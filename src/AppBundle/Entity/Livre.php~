@@ -1,0 +1,169 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * livre
+ *
+ * @ORM\Table(name="livre")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LivreRepository")
+ */
+class Livre
+{
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+        /**
+         * @var string
+         *
+         * @ORM\Column(name="name", type="string", length=20)
+         */
+        private $name;
+     /**
+         * @var string
+         *
+         * @ORM\Column(name="auteur", type="string", length=20)
+         */
+        private $auteur;
+
+         /**
+         * @var int
+         *
+         * @ORM\Column(name="Annee_publication", type="int", length=20)
+         */
+        private $Annee_publication;
+ /**
+         * @var string
+         *
+         * @ORM\Column(name="description", type="string", length=20)
+         */
+        private $description;
+
+
+
+        /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Categorie")
+     * @ORM\JoinTable(name="livre_categorie",
+     *      joinColumns={@ORM\JoinColumn(name="livre_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="categorie_id", referencedColumnName="id")}
+     *      )
+     */
+    private $categorie;
+
+    /**
+     * 
+     * 
+     * @var string
+     * @ORM\Column(name="slug",type="string",length=30, unique=true)
+     */
+    private $slug;
+    
+        /**
+         * Get id
+         *
+         * @return int
+         */
+        public function getId()
+        {
+            return $this->id;
+        }
+    
+        /**
+         * Set name
+         *
+         * @param string $name
+         *
+         * @return OperatingSystem
+         */
+        public function setName($name)
+        {
+            $this->name = $name;
+    
+            return $this;
+        }
+    
+        /**
+         * Get name
+         *
+         * @return string
+         */
+        public function getName()
+        {
+            return $this->name;
+        }
+        /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categorie = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add categorie
+     *
+     * @param \AppBundle\Entity\Categorie $categorie
+     *
+     * @return Livre
+     */
+    //public function addCategorie(\AppBundle\Entity\Categorie $categorie
+        //$this->categorie[] = $categorie;
+
+        //return $this;
+   // }
+
+    /**
+     * Remove categorie
+     *
+     * @param \AppBundle\Entity\categorie $categorie
+     */
+    public function removecategorie(\AppBundle\Entity\Categorie $categorie)
+    {
+        $this->categorie->removeElement($categorie);
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getcategorie()
+    {
+        return $this->categorie;
+    }
+    
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Courses
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/fontawesome-all.min.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<ul class="nav nav-pills">
+						<li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-home"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="jumbotron">
+						<h1>Welcome on the Bookstore !</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="page-header">
+						<h1>Categories</h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+                {% for categorie in results %}
+					<p>
+						<a href="{{url('categorie.detail', {'id': categorie.id})}}" class="btn btn-primary">{{categorie.name}} <span class="badge badge-light">10</span></a>
+						
+					</p>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+{% endblock %}
